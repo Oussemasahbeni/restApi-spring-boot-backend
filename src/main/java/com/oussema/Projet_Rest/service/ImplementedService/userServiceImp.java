@@ -3,15 +3,19 @@ package com.oussema.Projet_Rest.service.ImplementedService;
 import com.oussema.Projet_Rest.model.user;
 import com.oussema.Projet_Rest.repository.userRepository;
 import com.oussema.Projet_Rest.service.userService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class userServiceImp implements userService {
 
     private final userRepository userRepo;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public userServiceImp(userRepository userRepo) {
+    public userServiceImp(userRepository userRepo, BCryptPasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -22,7 +26,11 @@ public class userServiceImp implements userService {
             throw new IllegalArgumentException("Email already exists");
 
         }
-
+        String password = u.getPassword();
+        String hashedPassword = passwordEncoder.encode(password);
+        u.setPassword(hashedPassword);
+        System.out.println(hashedPassword+"wtvr"+ password);
+        System.out.println(u);
         return userRepo.save(u);
     }
 
@@ -37,7 +45,10 @@ public class userServiceImp implements userService {
                 throw new Exception("User not found");
             }
 
-            if (u1.getPassword().equals(password)) {
+
+
+
+            if (passwordEncoder.matches(password, u1.getPassword())) {
                 return u1;
             } else {
                 throw new Exception("Incorrect password");

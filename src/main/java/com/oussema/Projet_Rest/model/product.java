@@ -16,6 +16,18 @@ public class product {
     @JoinColumn(name= "id_categorie")
     private Category categorie;
 
+
+    @Override
+    public String toString() {
+        return "product{" +
+                "id_produit=" + id_produit +
+                ", lib='" + lib + '\'' +
+                ", prix='" + prix + '\'' +
+                ", qte='" + qte + '\'' +
+                ", categorie=" + categorie +
+                '}';
+    }
+
     public product(int id_produit, String lib, String prix, String qte, Category categorie) {
         this.id_produit = id_produit;
         this.lib = lib;

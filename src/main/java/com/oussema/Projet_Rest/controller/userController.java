@@ -17,6 +17,7 @@ public class userController {
 
     @PostMapping("/Signup")
     public @ResponseBody  user addUser(@RequestBody user u) {
+        System.out.println(u);
         return userService1.addUser(u);
     }
 

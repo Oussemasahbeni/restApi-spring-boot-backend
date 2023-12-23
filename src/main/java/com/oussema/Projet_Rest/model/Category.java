@@ -9,11 +9,19 @@ public class Category {
     @GeneratedValue
     @Column(name="id")
     private int id_category;
-    private String lib;
+    private String name;
 
-    public Category(int id_category, String lib) {
-        this.id_category = id_category;
-        this.lib = lib;}
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id_category=" + id_category +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    public Category(String name) {
+        this.name = name;}
     public Category() {}
 
     public int getId_category() {
@@ -24,11 +32,11 @@ public class Category {
         this.id_category = id_category;
     }
 
-    public String getLib() {
-        return lib;
+    public String getName() {
+        return name;
     }
 
-    public void setLib(String lib) {
-        this.lib = lib;
+    public void setName(String name) {
+        this.name = name;
     }
 }

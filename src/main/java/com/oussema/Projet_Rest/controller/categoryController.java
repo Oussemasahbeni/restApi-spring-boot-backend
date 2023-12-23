@@ -5,6 +5,8 @@ import com.oussema.Projet_Rest.model.product;
 import com.oussema.Projet_Rest.service.categoryService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class categoryController {
@@ -17,8 +19,8 @@ public class categoryController {
 
 
     @GetMapping("/categories")
-    public String getProducts(){
-        return categoryService1.getAllCategories().toString();
+    public List<Category> getProducts(){
+        return categoryService1.getAllCategories();
     }
 
     @PostMapping("/addCategory")
@@ -26,7 +28,7 @@ public class categoryController {
         return categoryService1.addCategory(c);
     }
 
-    @DeleteMapping("/deleteCategory/{id}")
+    @DeleteMapping("/category/{id}")
     public void deleteProduct(@PathVariable int id){
         categoryService1.deleteCategory(id);
     }
@@ -36,7 +38,7 @@ public class categoryController {
         return categoryService1.updateCategory(c);
     }
 
-    @GetMapping("/getCategoryById/{id}")
+    @GetMapping("/category/{id}")
 
     public Category getProductById(@PathVariable int id){
         return categoryService1.getCategoryById(id);
