@@ -10,8 +10,8 @@ public class product {
     @Column(name = "id")
     private int id_produit;
     private String lib;
-    private String prix;
-    private String qte;
+    private float prix;
+    private float qte;
     @ManyToOne
     @JoinColumn(name= "id_categorie")
     private Category categorie;
@@ -28,18 +28,15 @@ public class product {
                 '}';
     }
 
-    public product(int id_produit, String lib, String prix, String qte, Category categorie) {
+   public product(){}
+
+    public product(int id_produit, String lib, float prix, float qte, Category categorie) {
         this.id_produit = id_produit;
         this.lib = lib;
         this.prix = prix;
         this.qte = qte;
         this.categorie = categorie;
     }
-
-    public product() {
-
-    }
-
 
     public int getId_produit() {
         return id_produit;
@@ -57,19 +54,19 @@ public class product {
         this.lib = lib;
     }
 
-    public String getPrix() {
+    public float getPrix() {
         return prix;
     }
 
-    public void setPrix(String prix) {
+    public void setPrix(float prix) {
         this.prix = prix;
     }
 
-    public String getQte() {
+    public float getQte() {
         return qte;
     }
 
-    public void setQte(String qte) {
+    public void setQte(float qte) {
         this.qte = qte;
     }
 

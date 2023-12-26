@@ -3,7 +3,6 @@ package com.oussema.Projet_Rest.service.ImplementedService;
 import com.oussema.Projet_Rest.model.user;
 import com.oussema.Projet_Rest.repository.userRepository;
 import com.oussema.Projet_Rest.service.userService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,21 +17,22 @@ public class userServiceImp implements userService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
-    public user addUser(user u)  {
+        @Override
+        public user addUser(user u)  {
 
-        user u1 = userRepo.findByEmail(u.getEmail());
-        if( u1 != null){
-            throw new IllegalArgumentException("Email already exists");
+            user u1 = userRepo.findByEmail(u.getEmail());
+            if( u1 != null){
+                throw new IllegalArgumentException("Email already exists");
 
+            }
+            String password = u.getPassword();
+            String hashedPassword = passwordEncoder.encode(password);
+            u.setPassword(hashedPassword);
+            System.out.println(hashedPassword+"wtvr"+ password);
+            System.out.println(u);
+            System.out.println(u1);
+            return userRepo.save(u);
         }
-        String password = u.getPassword();
-        String hashedPassword = passwordEncoder.encode(password);
-        u.setPassword(hashedPassword);
-        System.out.println(hashedPassword+"wtvr"+ password);
-        System.out.println(u);
-        return userRepo.save(u);
-    }
 
 
 
