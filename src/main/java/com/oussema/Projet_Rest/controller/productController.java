@@ -41,7 +41,7 @@ public class productController {
        return  productService1.deleteProduct(id);
     }
 
-    @PutMapping("/updateProduct")
+    @PatchMapping("/updateProduct")
     public @ResponseBody product updateProduct(@RequestBody product p){
         return productService1.updateProduct(p);
     }
