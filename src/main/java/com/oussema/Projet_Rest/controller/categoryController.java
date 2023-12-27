@@ -1,7 +1,6 @@
 package com.oussema.Projet_Rest.controller;
 
 import com.oussema.Projet_Rest.model.Category;
-import com.oussema.Projet_Rest.model.product;
 import com.oussema.Projet_Rest.service.categoryService;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +32,7 @@ public class categoryController {
         categoryService1.deleteCategory(id);
     }
 
-    @PutMapping("/updateCategory")
+    @PatchMapping("/updateCategory")
     public @ResponseBody Category updateProduct(@RequestBody Category c){
         return categoryService1.updateCategory(c);
     }
